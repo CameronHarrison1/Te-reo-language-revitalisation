@@ -5,10 +5,12 @@ class app:
     def __init__(self , root):
         self.root = root
         self.stage = 1
+        self.entry = None
 
         self.create_window(self.stage)
 
     def create_window(self , stage):
+
 
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -18,23 +20,43 @@ class app:
             label = tk.Label(self.root , text = "Te reo learning game" , font = ("Arial" , 25))
             button = tk.Button(self.root , text = "START" , command = self.advance_stage)
 
+            label.pack()
+            button.pack(padx = 10 , pady = 10)
+
+
         elif stage == 2:
 
             label = tk.Label(self.root , text = "Test_2")
-            button = tk.Button(self.root , text = "Close" , command = root.destroy)
-            entry = tk.Entry(self.root)
+            button = tk.Button(self.root , text = "Check answer" , command = self.is_correct)
+            self.entry = tk.Entry(self.root)
+            
+            label.pack()
+            self.entry.pack()
+            button.pack()
 
-            entry.pack()
+        elif stage == 3:
+
+            label = tk.Label(self.root , text = "Test_3")
+            button = tk.Button(self.root , text = "Close" , command = root.destroy)
+
+            label.pack()
+            button.pack()
+            
 
 
         label.pack()
-        button.pack(padx = 10 , pady = 10)
-
+        button.pack()
 
     def advance_stage(self):
 
         self.stage += 1
         self.create_window(self.stage)
+
+    def is_correct(self):
+        self.correct = self.entry.get()
+
+        if self.correct == "Caleb":
+            self.advance_stage()
 
 
 root = tk.Tk()
