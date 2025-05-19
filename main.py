@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from playsound import playsound
 
 class app:
     def __init__(self , root):
@@ -31,7 +32,7 @@ class app:
             self.entry = tk.Entry(self.root)
             
             label.pack()
-            self.entry.pack()
+            self.entry.pack(padx = 10 , pady = 10)
             button.pack()
 
         elif stage == 3:
@@ -57,6 +58,10 @@ class app:
 
         if self.correct == "Caleb":
             self.advance_stage()
+
+    def sound_effect(self , file):
+        self.file = file
+        playsound(file)
 
 
 root = tk.Tk()
