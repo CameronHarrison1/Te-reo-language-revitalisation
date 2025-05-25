@@ -57,7 +57,7 @@ class app:
         self.correct = self.entry.get()
 
         if self.correct == "Caleb":
-            self.advance_stage()
+            self.advance_stage(self)
 
     def sound_effect(self , file):
         self.file = file
