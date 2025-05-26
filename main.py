@@ -1,3 +1,6 @@
+# Cameron Harrison
+# Level 2 Computer science Te Reo Revitilisation project
+
 import tkinter as tk
 
 from playsound import playsound
@@ -33,11 +36,13 @@ class app:
 
         elif stage == 2:
 
-            label = tk.Label(self.root , text = "Test_2")
+            label = tk.Label(self.root , text = "Spell this word:" , font = ("Arial" , 25))
+            sound = tk.Button(self.root , text = "Play sound" , command = self.sound_effect)
             button = tk.Button(self.root , text = "Check answer" , command = self.is_correct)
             self.entry = tk.Entry(self.root)
             
             label.pack()
+            sound.pack(padx = 10 , pady = 10)
             self.entry.pack(padx = 10 , pady = 10)
             button.pack()
 
@@ -51,19 +56,29 @@ class app:
             
 
 
-        label.pack()
-        button.pack()
 
     def advance_stage(self):
 
         self.stage += 1
         self.create_window(self.stage)
 
+
+    def is_incorrect(self):
+        new_window = tk.Toplevel(self.root)
+        new_label = tk.Label(new_window , text = "Test incorrect")
+        new_label.pack()
+        new_window.after(3000 , new_window.destroy)
+
+
     def is_correct(self):
         self.correct = self.entry.get()
 
         if self.correct == "Caleb":
             self.advance_stage()
+
+        else:
+            self.is_incorrect()
+
 
     def sound_effect(self , file):
         self.file = file
