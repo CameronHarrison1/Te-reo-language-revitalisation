@@ -2,6 +2,12 @@ import tkinter as tk
 
 from playsound import playsound
 
+
+
+## Note that I haven't put my sound files in yet along with many other things I have talked about in my plan
+
+
+
 class app:
     def __init__(self , root):
         self.root = root
@@ -57,7 +63,7 @@ class app:
         self.correct = self.entry.get()
 
         if self.correct == "Caleb":
-            self.advance_stage(self)
+            self.advance_stage()
 
     def sound_effect(self , file):
         self.file = file
