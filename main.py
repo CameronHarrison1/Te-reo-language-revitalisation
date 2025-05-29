@@ -12,6 +12,7 @@ from playsound import playsound
 
 
 class app:
+
     def __init__(self , root):
         self.root = root
         self.stage = 1
@@ -27,18 +28,36 @@ class app:
 
         if stage == 1:
 
-            label = tk.Label(self.root , text = "Te reo learning game" , font = ("Arial" , 25))
-            button = tk.Button(self.root , text = "START" , command = self.advance_stage)
+            label = tk.Label(self.root ,
+                                text = "Te reo learning game" ,
+                                font = ("Arial" , 25))
+            
+            button = tk.Button(self.root ,
+                                    text = "START" ,
+                                    font = ("Arial" , 10) ,
+                                    width = 10 ,
+                                    height = 3 ,
+                                    bg = "#7ddc34" ,
+                                    command = self.advance_stage)
 
             label.pack()
-            button.pack(padx = 10 , pady = 10)
+            button.pack(padx = 10 , pady = 20)
 
 
         elif stage == 2:
 
-            label = tk.Label(self.root , text = "Spell this word:" , font = ("Arial" , 25))
-            sound = tk.Button(self.root , text = "Play sound" , command = self.sound_effect)
-            button = tk.Button(self.root , text = "Check answer" , command = self.is_correct)
+            label = tk.Label(self.root ,
+                                text = "Spell this word:" ,
+                                font = ("Arial" , 25))
+            
+            sound = tk.Button(self.root ,
+                                text = "Play sound" ,
+                                command = self.sound_effect)
+            
+            button = tk.Button(self.root ,
+                                text = "Check answer" ,
+                                command = self.is_correct)
+            
             self.entry = tk.Entry(self.root)
             
             label.pack()
@@ -48,8 +67,12 @@ class app:
 
         elif stage == 3:
 
-            label = tk.Label(self.root , text = "Test_3")
-            button = tk.Button(self.root , text = "Close" , command = root.destroy)
+            label = tk.Label(self.root ,
+                            text = "Test_3")
+            
+            button = tk.Button(self.root ,
+                                text = "Close" ,
+                                command = root.destroy)
 
             label.pack()
             button.pack()
@@ -64,13 +87,23 @@ class app:
 
 
     def is_incorrect(self):
+
         new_window = tk.Toplevel(self.root)
-        new_label = tk.Label(new_window , text = "Test incorrect")
-        new_label.pack()
+
+        new_window.geometry("400x300+760+390")
+        new_window.config(bg = "red")
+
+        new_label = tk.Label(new_window ,
+                                text = "Incorrect ! Try again" ,
+                                bg = "red" ,
+                                font = ("Arial" , 25))
+        
+        new_label.pack(pady = 60)
         new_window.after(3000 , new_window.destroy)
 
 
     def is_correct(self):
+
         self.correct = self.entry.get()
 
         if self.correct == "Caleb":
@@ -81,6 +114,7 @@ class app:
 
 
     def sound_effect(self , file):
+
         self.file = file
         playsound(file)
 
