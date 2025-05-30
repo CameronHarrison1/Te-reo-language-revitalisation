@@ -52,7 +52,7 @@ class app:
             
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
-                                command = self.sound_effect)
+                                command = lambda: self.sound_effect('whanau.mp3'))
             
             button = tk.Button(self.root ,
                                 text = "Check answer" ,
