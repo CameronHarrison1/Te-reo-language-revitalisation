@@ -10,6 +10,32 @@ from playsound import playsound
 ## Note that I haven't put my sound files in yet along with many other things I have talked about in my plan
 
 
+sounds = {
+    "Whanau": r"sounds\Whanau.mp3",
+    "Haere Mai": r"sounds\Haere Mai.mp3",
+    "Hui": r"sounds\Hui.mp3",
+    "Ingoa": r"sounds\Ingoa.mp3",
+    "Kai": r"sounds\Kai.mp3",
+    "Kaiako": r"sounds\Kaiako.mp3",
+    "Kia Ora": r"sounds\Kia Ora.mp3",
+    "Kura": r"sounds\Kura.mp3",
+    "Marama": r"sounds\Marama.mp3",
+    "Maunga": r"sounds\Maunga.mp3",
+    "Moana": r"sounds\Moana.mp3",
+    "Ngahere": r"sounds\Ngahere.mp3",
+    "Puku": r"sounds\Puku.mp3",
+    "Ra": r"sounds\Ra.mp3",
+    "Roto": r"sounds\Roto.mp3",
+    "Tama": r"sounds\Tama.mp3",
+    "Tamariki": r"sounds\Tamariki.mp3",
+    "Tena koutou": r"sounds\Tena koutou.mp3",
+    "Waiata": r"sounds\Waiata.mp3",
+    "Waka": r"sounds\Waka.mp3",
+    "Whare": r"sounds\Whare.mp3"
+}
+
+
+
 
 class app:
 
@@ -52,7 +78,7 @@ class app:
             
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
-                                command = lambda: self.sound_effect(r"C:\Users\22010\Downloads\whanau.mp3"))
+                                command = lambda: self.sound_effect(sounds["Tama"]))
             
             button = tk.Button(self.root ,
                                 text = "Check answer" ,
