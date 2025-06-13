@@ -3,13 +3,11 @@
 
 import tkinter as tk
 
-from playsound import playsound
+import pygame
 
 import random
 
 
-
-## Note that I haven't put my sound files in yet along with many other things I have talked about in my plan
 
 
 sounds = {
@@ -47,6 +45,7 @@ class app:
         self.entry = None
 
         self.current_word = None
+        self.current_word = random.choice(list(sounds.keys()))
 
 
         self.create_window(self.stage)
@@ -80,13 +79,10 @@ class app:
             label = tk.Label(self.root ,
                                 text = "Spell this word:" ,
                                 font = ("Arial" , 25))
-            
-            self.current_word = random.choice(list(sounds.keys()))
 
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
-                                command=lambda word=self.current_word: self.sound_effect(sounds[word])
-)
+                                command=lambda word=self.current_word: self.sound_effect(sounds[word]))
             
             button = tk.Button(self.root ,
                                 text = "Check answer" ,
@@ -149,8 +145,9 @@ class app:
 
     def sound_effect(self , file):
 
-        self.file = file
-        playsound(file)
+        pygame.mixer.init()
+        pygame.mixer.music.load(file)
+        pygame.mixer.music.play()
 
 
 root = tk.Tk()
