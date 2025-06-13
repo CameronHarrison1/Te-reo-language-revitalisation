@@ -5,33 +5,35 @@ import tkinter as tk
 
 from playsound import playsound
 
+import random
+
 
 
 ## Note that I haven't put my sound files in yet along with many other things I have talked about in my plan
 
 
 sounds = {
-    "Whanau": r"sounds\Whanau.mp3",
-    "Haere Mai": r"sounds\Haere Mai.mp3",
-    "Hui": r"sounds\Hui.mp3",
-    "Ingoa": r"sounds\Ingoa.mp3",
-    "Kai": r"sounds\Kai.mp3",
-    "Kaiako": r"sounds\Kaiako.mp3",
-    "Kia Ora": r"sounds\Kia Ora.mp3",
-    "Kura": r"sounds\Kura.mp3",
-    "Marama": r"sounds\Marama.mp3",
-    "Maunga": r"sounds\Maunga.mp3",
-    "Moana": r"sounds\Moana.mp3",
-    "Ngahere": r"sounds\Ngahere.mp3",
-    "Puku": r"sounds\Puku.mp3",
-    "Ra": r"sounds\Ra.mp3",
-    "Roto": r"sounds\Roto.mp3",
-    "Tama": r"sounds\Tama.mp3",
-    "Tamariki": r"sounds\Tamariki.mp3",
-    "Tena koutou": r"sounds\Tena koutou.mp3",
-    "Waiata": r"sounds\Waiata.mp3",
-    "Waka": r"sounds\Waka.mp3",
-    "Whare": r"sounds\Whare.mp3"
+    "Whanau": "sounds/Whanau.mp3",
+    "Haere Mai": "sounds/Haere Mai.mp3",
+    "Hui": "sounds/Hui.mp3",
+    "Ingoa": "sounds/Ingoa.mp3",
+    "Kai": "sounds/Kai.mp3",
+    "Kaiako": "sounds/Kaiako.mp3",
+    "Kia Ora": "sounds/Kia Ora.mp3",
+    "Kura": "sounds/Kura.mp3",
+    "Marama": "sounds/Marama.mp3",
+    "Maunga": "sounds/Maunga.mp3",
+    "Moana": "sounds/Moana.mp3",
+    "Ngahere": "sounds/Ngahere.mp3",
+    "Puku": "sounds/Puku.mp3",
+    "Ra": "sounds/Ra.mp3",
+    "Roto": "sounds/Roto.mp3",
+    "Tama": "sounds/Tama.mp3",
+    "Tamariki": "sounds/Tamariki.mp3",
+    "Tena koutou": "sounds/Tena koutou.mp3",
+    "Waiata": "sounds/Waiata.mp3",
+    "Waka": "sounds/Waka.mp3",
+    "Whare": "sounds/Whare.mp3"
 }
 
 
@@ -43,6 +45,9 @@ class app:
         self.root = root
         self.stage = 1
         self.entry = None
+
+        self.current_word = None
+
 
         self.create_window(self.stage)
 
@@ -76,9 +81,12 @@ class app:
                                 text = "Spell this word:" ,
                                 font = ("Arial" , 25))
             
+            self.current_word = random.choice(list(sounds.keys()))
+
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
-                                command = lambda: self.sound_effect(sounds["Tama"]))
+                                command=lambda word=self.current_word: self.sound_effect(sounds[word])
+)
             
             button = tk.Button(self.root ,
                                 text = "Check answer" ,
@@ -130,9 +138,9 @@ class app:
 
     def is_correct(self):
 
-        self.correct = self.entry.get()
+        self.correct = self.entry.get().strip()
 
-        if self.correct == "Caleb":
+        if self.correct.lower() == self.current_word.lower():
             self.advance_stage()
 
         else:
