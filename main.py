@@ -44,8 +44,12 @@ class app:
         self.stage = 1
         self.entry = None
 
-        self.current_word = None
-        self.current_word = random.choice(list(sounds.keys()))
+        self.current_index = 0
+
+        self.incorrect_guesses = 0
+
+        self.words_to_play = list(sounds.keys())
+        random.shuffle(self.words_to_play)
 
 
         self.create_window(self.stage)
@@ -68,7 +72,7 @@ class app:
                                     width = 10 ,
                                     height = 3 ,
                                     bg = "#7ddc34" ,
-                                    command = self.advance_stage)
+                                    command = lambda: self.create_window(2))
 
             label.pack()
             button.pack(padx = 10 , pady = 20)
@@ -79,6 +83,9 @@ class app:
             label = tk.Label(self.root ,
                                 text = "Spell this word:" ,
                                 font = ("Arial" , 25))
+
+
+            self.current_word = self.words_to_play[self.current_index]
 
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
@@ -98,22 +105,21 @@ class app:
         elif stage == 3:
 
             label = tk.Label(self.root ,
-                            text = "Test_3")
+                                text = "You finished !" ,
+                                font = ("Arial" , 25))
+            
+            guess_label = tk.Label(self.root ,
+                                text = f"You got {self.incorrect_guesses} incorrect guesses" ,
+                                font = ("Arial" , 25))
             
             button = tk.Button(self.root ,
                                 text = "Close" ,
                                 command = root.destroy)
 
             label.pack()
+            guess_label.pack()
             button.pack()
             
-
-
-
-    def advance_stage(self):
-
-        self.stage += 1
-        self.create_window(self.stage)
 
 
     def is_incorrect(self):
@@ -123,13 +129,15 @@ class app:
         new_window.geometry("400x300+760+390")
         new_window.config(bg = "red")
 
+        self.incorrect_guesses += 1
+
         new_label = tk.Label(new_window ,
                                 text = "Incorrect ! Try again" ,
                                 bg = "red" ,
                                 font = ("Arial" , 25))
         
         new_label.pack(pady = 60)
-        new_window.after(3000 , new_window.destroy)
+        new_window.after(1500 , new_window.destroy)
 
 
     def is_correct(self):
@@ -137,7 +145,27 @@ class app:
         self.correct = self.entry.get().strip()
 
         if self.correct.lower() == self.current_word.lower():
-            self.advance_stage()
+
+            self.current_index += 1
+
+            new_window = tk.Toplevel(self.root)
+
+            new_window.geometry("400x300+760+390")
+            new_window.config(bg = "#7ddc34")
+
+            new_label = tk.Label(new_window ,
+                                text = "Correct !" ,
+                                bg = "#7ddc34" ,
+                                font = ("Arial" , 25))
+            
+            new_label.pack(pady = 60)
+            new_window.after(1500 , new_window.destroy)
+
+            
+            if self.current_index < len(self.words_to_play):
+                root.after(1500 , lambda: self.create_window(2))
+            else:
+                self.create_window(3)
 
         else:
             self.is_incorrect()
