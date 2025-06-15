@@ -73,15 +73,25 @@ class app:
                                     height = 3 ,
                                     bg = "#7ddc34" ,
                                     command = lambda: self.create_window(2))
+            
+            how_2_play = tk.Label(self.root , 
+                                  text = "How to play:\n" \
+                                  "Click start\n" \
+                                  "Listen to the word by clicking the button\n" \
+                                  "Type what you think the spelling of the word is into the box")
 
             label.pack()
             button.pack(padx = 10 , pady = 20)
+            how_2_play.pack(side = tk.BOTTOM)
 
 
         elif stage == 2:
 
+            self.root.config(bg = "dimgray")
+
             label = tk.Label(self.root ,
                                 text = "Spell this word:" ,
+                                bg = "dimgray" ,
                                 font = ("Arial" , 25))
 
 
@@ -89,10 +99,14 @@ class app:
 
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
+                                bg = "#4e4e4d" ,
+                                fg = "white" ,
                                 command=lambda word=self.current_word: self.sound_effect(sounds[word]))
             
             button = tk.Button(self.root ,
                                 text = "Check answer" ,
+                                bg = "#4e4e4d" ,
+                                fg = "white" ,
                                 command = self.is_correct)
             
             self.entry = tk.Entry(self.root)
