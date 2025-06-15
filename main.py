@@ -51,6 +51,7 @@ class app:
         self.words_to_play = list(sounds.keys())
         random.shuffle(self.words_to_play)
 
+        self.root.title("Te reo language revitilisation spelling game")
 
         self.create_window(self.stage)
 
@@ -62,11 +63,14 @@ class app:
 
         if stage == 1:
 
-            label = tk.Label(self.root ,
+            self.root.config(bg = "dimgray")
+
+            title = tk.Label(self.root ,
                                 text = "Te reo learning game" ,
+                                bg = "dimgray" ,
                                 font = ("Arial" , 25))
             
-            button = tk.Button(self.root ,
+            start_button = tk.Button(self.root ,
                                     text = "START" ,
                                     font = ("Arial" , 10) ,
                                     width = 10 ,
@@ -78,11 +82,13 @@ class app:
                                   text = "How to play:\n" \
                                   "Click start\n" \
                                   "Listen to the word by clicking the button\n" \
-                                  "Type what you think the spelling of the word is into the box")
+                                  "Type what you think the spelling of the word is into the box" ,
+                                  bg = "dimgray" ,
+                                  font = ("Arial"))
 
-            label.pack()
-            button.pack(padx = 10 , pady = 20)
-            how_2_play.pack(side = tk.BOTTOM)
+            title.pack()
+            start_button.pack(padx = 10 , pady = 20)
+            how_2_play.pack(pady = 10)
 
 
         elif stage == 2:
@@ -120,10 +126,12 @@ class app:
 
             label = tk.Label(self.root ,
                                 text = "You finished !" ,
+                                bg = "dimgray" ,
                                 font = ("Arial" , 25))
             
             guess_label = tk.Label(self.root ,
                                 text = f"You got {self.incorrect_guesses} incorrect guesses" ,
+                                bg = "dimgray" ,
                                 font = ("Arial" , 25))
             
             button = tk.Button(self.root ,
