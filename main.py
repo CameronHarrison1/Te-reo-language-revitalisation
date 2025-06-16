@@ -72,26 +72,32 @@ class app:
 
             self.root.config(bg = "dimgray")
 
-            title = tk.Label(self.root ,
+            title = tk.Label(
+                            self.root ,
                             text = "Te reo spelling game" ,
                             bg = "dimgray" ,
-                            font = ("Arial" , 25))
+                            font = ("Arial" , 25)
+                            )
             
-            start_button = tk.Button(self.root ,
+            start_button = tk.Button(
+                                    self.root ,
                                     text = "START" ,
                                     font = ("Arial" , 10) ,
                                     width = 10 ,
                                     height = 3 ,
                                     bg = "#7ddc34" ,
-                                    command = lambda: self.create_window(2))
+                                    command = lambda: self.create_window(2)
+                                    )
             
-            how_2_play = tk.Label(self.root , 
+            how_2_play = tk.Label(
+                                  self.root , 
                                   text = "How to play:\n" \
                                   "Click start\n" \
                                   "Listen to the word by clicking the button\n" \
                                   "Type what you think the spelling of the word is into the box" ,
                                   bg = "dimgray" ,
-                                  font = ("Arial"))
+                                  font = ("Arial")
+                                  )
 
             title.pack()
             start_button.pack(padx = 10 , pady = 20)
@@ -106,7 +112,8 @@ class app:
                             self.root ,
                             text = "Spell this word:" ,
                             bg = "dimgray" ,
-                            font = ("Arial" , 25))
+                            font = ("Arial" , 25)
+                            )
 
             # Sets the current word that should play for the window to be the first in the list
             # As the index increases throughout the game it will go through the list
@@ -114,22 +121,28 @@ class app:
 
             # Indexing through the sounds dict by using self.current_word
             # Fetches correct sound file so it matches with what needs to be typed in entry box
-            sound = tk.Button(self.root ,
-                                text = "Play sound" ,
-                                bg = "#4e4e4d" ,
-                                fg = "white" ,
-                                command=lambda word=self.current_word: self.sound_effect(sounds[word]))
+            sound = tk.Button(
+                              self.root ,
+                              text = "Play sound" ,
+                              bg = "#4e4e4d" ,
+                              fg = "white" ,
+                              command=lambda word=self.current_word: self.sound_effect(sounds[word])
+                              )
             
-            button = tk.Button(self.root ,
-                                text = "Check answer" ,
-                                bg = "#4e4e4d" ,
-                                fg = "white" ,
-                                command = self.is_correct)
+            button = tk.Button(
+                               self.root ,
+                               text = "Check answer" ,
+                               bg = "#4e4e4d" ,
+                               fg = "white" ,
+                               command = self.is_correct
+                               )
             
-            hint_label = tk.Label(self.root ,
+            hint_label = tk.Label(
+                                  self.root ,
                                   text = "Hint: make sure to use double vowels\n where the vowel is accentuated" ,
                                   bg = "dimgray" ,
-                                  font = ("Arial"))
+                                  font = ("Arial")
+                                  )
                                 
             
             self.entry = tk.Entry(self.root)
@@ -172,10 +185,12 @@ class app:
 
         self.incorrect_guesses += 1
 
-        new_label = tk.Label(new_window ,
-                                text = "Incorrect ! Try again" ,
-                                bg = "red" ,
-                                font = ("Arial" , 25))
+        new_label = tk.Label(
+                             new_window ,
+                             text = "Incorrect ! Try again" ,
+                             bg = "red" ,
+                             font = ("Arial" , 25)
+                             )
         
         new_label.pack(pady = 60)
         new_window.after(1500 , new_window.destroy)
@@ -199,10 +214,12 @@ class app:
             new_window.geometry("400x300+760+390")
             new_window.config(bg = "#7ddc34")
 
-            new_label = tk.Label(new_window ,
+            new_label = tk.Label(
+                                new_window ,
                                 text = "Correct !" ,
                                 bg = "#7ddc34" ,
-                                font = ("Arial" , 25))
+                                font = ("Arial" , 25)
+                                )
             
             new_label.pack(pady = 60)
             new_window.after(1500 , new_window.destroy)
