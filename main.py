@@ -73,9 +73,9 @@ class app:
             self.root.config(bg = "dimgray")
 
             title = tk.Label(self.root ,
-                                text = "Te reo spelling game" ,
-                                bg = "dimgray" ,
-                                font = ("Arial" , 25))
+                            text = "Te reo spelling game" ,
+                            bg = "dimgray" ,
+                            font = ("Arial" , 25))
             
             start_button = tk.Button(self.root ,
                                     text = "START" ,
@@ -102,10 +102,11 @@ class app:
 
             self.root.config(bg = "dimgray")
 
-            label = tk.Label(self.root ,
-                                text = "Spell this word:" ,
-                                bg = "dimgray" ,
-                                font = ("Arial" , 25))
+            label = tk.Label(
+                            self.root ,
+                            text = "Spell this word:" ,
+                            bg = "dimgray" ,
+                            font = ("Arial" , 25))
 
             # Sets the current word that should play for the window to be the first in the list
             # As the index increases throughout the game it will go through the list
