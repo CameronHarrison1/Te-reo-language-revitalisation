@@ -2,8 +2,10 @@
 # Level 2 Computer science Te Reo Revitilisation project
 
 import tkinter as tk
+from tkinter import messagebox
 
 import pygame
+pygame.mixer.init()
 
 import random
 
@@ -11,7 +13,7 @@ import random
 
 
 sounds = {
-    "Whanau": "sounds/Whanau.mp3",
+    "Whaanau": "sounds/Whanau.mp3",
     "Haere Mai": "sounds/Haere Mai.mp3",
     "Hui": "sounds/Hui.mp3",
     "Ingoa": "sounds/Ingoa.mp3",
@@ -22,13 +24,13 @@ sounds = {
     "Marama": "sounds/Marama.mp3",
     "Maunga": "sounds/Maunga.mp3",
     "Moana": "sounds/Moana.mp3",
-    "Ngahere": "sounds/Ngahere.mp3",
+    "Ngaahere": "sounds/Ngahere.mp3",
     "Puku": "sounds/Puku.mp3",
-    "Ra": "sounds/Ra.mp3",
+    "Raa": "sounds/Ra.mp3",
     "Roto": "sounds/Roto.mp3",
     "Tama": "sounds/Tama.mp3",
     "Tamariki": "sounds/Tamariki.mp3",
-    "Tena koutou": "sounds/Tena koutou.mp3",
+    "Teenaa koutou": "sounds/Tena koutou.mp3",
     "Waiata": "sounds/Waiata.mp3",
     "Waka": "sounds/Waka.mp3",
     "Whare": "sounds/Whare.mp3"
@@ -115,12 +117,19 @@ class app:
                                 fg = "white" ,
                                 command = self.is_correct)
             
+            hint_label = tk.Label(self.root ,
+                                  text = "Hint: make sure to use double vowels\n where the vowel is accentuated" ,
+                                  bg = "dimgray" ,
+                                  font = ("Arial"))
+                                
+            
             self.entry = tk.Entry(self.root)
             
             label.pack()
             sound.pack(padx = 10 , pady = 10)
             self.entry.pack(padx = 10 , pady = 10)
             button.pack()
+            hint_label.pack(padx = 10 , pady = 10)
 
         elif stage == 3:
 
@@ -195,9 +204,12 @@ class app:
 
     def sound_effect(self , file):
 
-        pygame.mixer.init()
-        pygame.mixer.music.load(file)
-        pygame.mixer.music.play()
+        try:
+            pygame.mixer.music.load(file)
+            pygame.mixer.music.play()
+        except pygame.error as e:
+            messagebox.showerror("Sound error" , f"Failed to play sound file for {self.current_word}")
+
 
 
 root = tk.Tk()
