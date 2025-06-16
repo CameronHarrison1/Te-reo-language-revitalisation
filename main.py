@@ -11,7 +11,7 @@ import random
 
 
 
-
+# Dict of sound names + file paths
 sounds = {
     "Whaanau": "sounds/Whanau.mp3",
     "Haere Mai": "sounds/Haere Mai.mp3",
@@ -38,10 +38,11 @@ sounds = {
 
 
 
-
 class app:
 
     def __init__(self , root):
+
+        # Initialising variables
         self.root = root
         self.stage = 1
         self.entry = None
@@ -50,6 +51,8 @@ class app:
 
         self.incorrect_guesses = 0
 
+
+        # Puts sounds keys into a list then randomises them
         self.words_to_play = list(sounds.keys())
         random.shuffle(self.words_to_play)
 
@@ -57,9 +60,11 @@ class app:
 
         self.create_window(self.stage)
 
+    # Method for stage system
+    # This avoids a function for every new window
     def create_window(self , stage):
 
-
+        # Loops through all widgets in root window then deletes them
         for widget in self.root.winfo_children():
             widget.destroy()
 
@@ -68,7 +73,7 @@ class app:
             self.root.config(bg = "dimgray")
 
             title = tk.Label(self.root ,
-                                text = "Te reo learning game" ,
+                                text = "Te reo spelling game" ,
                                 bg = "dimgray" ,
                                 font = ("Arial" , 25))
             
@@ -102,9 +107,12 @@ class app:
                                 bg = "dimgray" ,
                                 font = ("Arial" , 25))
 
-
+            # Sets the current word that should play for the window to be the first in the list
+            # As the index increases throughout the game it will go through the list
             self.current_word = self.words_to_play[self.current_index]
 
+            # Indexing through the sounds dict by using self.current_word
+            # Fetches correct sound file so it matches with what needs to be typed in entry box
             sound = tk.Button(self.root ,
                                 text = "Play sound" ,
                                 bg = "#4e4e4d" ,
@@ -153,6 +161,7 @@ class app:
             
 
 
+    # Incorrect window popup
     def is_incorrect(self):
 
         new_window = tk.Toplevel(self.root)
@@ -171,12 +180,17 @@ class app:
         new_window.after(1500 , new_window.destroy)
 
 
+    # Correct window popup
+    # Also checks if user shoudl move on or is finished
     def is_correct(self):
 
         self.correct = self.entry.get().strip()
 
+        # Check word typed in is correct
         if self.correct.lower() == self.current_word.lower():
 
+            # Increase this every time user gets answer correct
+            # So that it continues to index through the list
             self.current_index += 1
 
             new_window = tk.Toplevel(self.root)
@@ -192,7 +206,7 @@ class app:
             new_label.pack(pady = 60)
             new_window.after(1500 , new_window.destroy)
 
-            
+            # If the length of the current index is less than the total length of the list of words then continue        
             if self.current_index < len(self.words_to_play):
                 root.after(1500 , lambda: self.create_window(2))
             else:
@@ -202,6 +216,8 @@ class app:
             self.is_incorrect()
 
 
+    # Method to play sound
+    # If sound files can't be found then shows an error
     def sound_effect(self , file):
 
         try:
@@ -216,6 +232,7 @@ root = tk.Tk()
 
 root.geometry("400x300+760+390")
 
+# Make program run
 app(root)
 
 
