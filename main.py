@@ -9,32 +9,46 @@ pygame.mixer.init()
 
 import random
 
+import os
+import sys
+
+# So I can bundle it into an .exe
+def resource_path(relative_path):
+
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 
 
 # Dict of sound names + file paths
 sounds = {
-    "Whaanau": "sounds/Whanau.mp3",
-    "Haere Mai": "sounds/Haere Mai.mp3",
-    "Hui": "sounds/Hui.mp3",
-    "Ingoa": "sounds/Ingoa.mp3",
-    "Kai": "sounds/Kai.mp3",
-    "Kaiako": "sounds/Kaiako.mp3",
-    "Kia Ora": "sounds/Kia Ora.mp3",
-    "Kura": "sounds/Kura.mp3",
-    "Marama": "sounds/Marama.mp3",
-    "Maunga": "sounds/Maunga.mp3",
-    "Moana": "sounds/Moana.mp3",
-    "Ngaahere": "sounds/Ngahere.mp3",
-    "Puku": "sounds/Puku.mp3",
-    "Raa": "sounds/Ra.mp3",
-    "Roto": "sounds/Roto.mp3",
-    "Tama": "sounds/Tama.mp3",
-    "Tamariki": "sounds/Tamariki.mp3",
-    "Teenaa koutou": "sounds/Tena koutou.mp3",
-    "Waiata": "sounds/Waiata.mp3",
-    "Waka": "sounds/Waka.mp3",
-    "Whare": "sounds/Whare.mp3"
+    "Whaanau": resource_path("sounds/Whanau.mp3"),
+    "Haere Mai": resource_path("sounds/Haere Mai.mp3"),
+    "Hui": resource_path("sounds/Hui.mp3"),
+    "Ingoa": resource_path("sounds/Ingoa.mp3"),
+    "Kai": resource_path("sounds/Kai.mp3"),
+    "Kaiako": resource_path("sounds/Kaiako.mp3"),
+    "Kia Ora": resource_path("sounds/Kia Ora.mp3"),
+    "Kura": resource_path("sounds/Kura.mp3"),
+    "Marama": resource_path("sounds/Marama.mp3"),
+    "Maunga": resource_path("sounds/Maunga.mp3"),
+    "Moana": resource_path("sounds/Moana.mp3"),
+    "Ngaahere": resource_path("sounds/Ngahere.mp3"),
+    "Puku": resource_path("sounds/Puku.mp3"),
+    "Raa": resource_path("sounds/Ra.mp3"),
+    "Roto": resource_path("sounds/Roto.mp3"),
+    "Tama": resource_path("sounds/Tama.mp3"),
+    "Tamariki": resource_path("sounds/Tamariki.mp3"),
+    "Teenaa koutou": resource_path("sounds/Tena koutou.mp3"),
+    "Waiata": resource_path("sounds/Waiata.mp3"),
+    "Waka": resource_path("sounds/Waka.mp3"),
+    "Whare": resource_path("sounds/Whare.mp3")
 }
+
 
 
 
